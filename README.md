@@ -6,17 +6,25 @@
 
 # English
 
-## myTemplateGenerator — Template-based structure generation for VSCode
+## My Template Generator — Template-based structure generation for VSCode
 
+![Logo](https://raw.githubusercontent.com/gormov1122/MyTemplateGenerator/main/src/images/1.png)
 **Features:**
 - Syntax highlighting and autocomplete for template variables in templates
 - Generate files and folders from templates with variable substitution
-- Flexible configuration via `mytemplategenerator.json` or visual configurator
 - Full localization (English/Russian) for all UI, messages, and menus
 - Choose variable input mode: Webview (form) or inputBox (one by one)
 - Overwrite control: allow or forbid overwriting existing files/folders
 - Smart conflict handling: clear notifications if structure already exists
-- **No Handlebars dependency**: variable substitution is handled by the extension itself
+
+Context menu "Create from template..." is available by right-clicking any folder.  
+![Logo](https://raw.githubusercontent.com/gormov1122/MyTemplateGenerator/main/src/images/2.png)
+
+Convenient UI for creation: just select a template and specify values for the variables used in the template. (The list of variables updates automatically)  
+![Logo](https://raw.githubusercontent.com/gormov1122/MyTemplateGenerator/main/src/images/3.png)
+
+User-friendly settings UI.
+![Logo](https://raw.githubusercontent.com/gormov1122/MyTemplateGenerator/main/src/images/4.png)
 
 ### Quick Start
 1. Create a `templates` folder in your project root.
@@ -68,6 +76,8 @@ const name = '{{name}}';
 ```
 
 ### Configuration
+**To open the visual configurator, press <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd>, type `Configure myTemplateGenerator...` and select the command.**  
+
 Use `mytemplategenerator.json` in your project root or the visual configurator (**Configure myTemplateGenerator...**):
 ```json
 {
@@ -99,17 +109,26 @@ Use `mytemplategenerator.json` in your project root or the visual configurator (
 
 # Русский
 
-## myTemplateGenerator — Генерация структуры из шаблонов для VSCode
+## My Template Generator — Генерация структуры из шаблонов для VSCode
 
+![Логотип](https://raw.githubusercontent.com/gormov1122/MyTemplateGenerator/main/src/images/1.png)
 **Возможности:**
 - Подсветка синтаксиса и автокомплит переменных в шаблонах
 - Генерация файлов и папок по шаблонам с подстановкой переменных
-- Гибкая настройка через `mytemplategenerator.json` или визуальный конфигуратор
 - Полная локализация (русский/английский) для всего интерфейса, сообщений и меню
 - Выбор способа ввода переменных: Webview (форма) или inputBox (по одной)
 - Контроль перезаписи: можно запретить или разрешить перезапись существующих файлов/папок
 - Умная обработка конфликтов: понятные уведомления, если структура уже существует
-- **Без зависимости от Handlebars**: подстановка переменных реализована внутри расширения
+
+Контекстное меню "Создать из шаблона.." доступно правым кликом по любой папке.  
+![Логотип](https://raw.githubusercontent.com/gormov1122/MyTemplateGenerator/main/src/images/2.png)
+
+Удобный UI создания, нужно только выбрать шаблок и указать значения переменных используемых в шаблоне. (Список переменных обновляется автоматически)  
+![Логотип](https://raw.githubusercontent.com/gormov1122/MyTemplateGenerator/main/src/images/3.png)
+
+Удобный UI интерфейс настроек.
+![Логотип](https://raw.githubusercontent.com/gormov1122/MyTemplateGenerator/main/src/images/4.png)
+
 
 ### Быстрый старт
 1. В корне проекта создайте папку `templates`.
@@ -161,7 +180,10 @@ const name = '{{name}}';
 ```
 
 ### Конфигурация
+**Чтобы открыть визуальный конфигуратор, нажмите <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd>, введите `Настроить myTemplateGenerator...` и выберите команду.**  
+
 Для гибкой настройки используйте файл `mytemplategenerator.json` в корне проекта или визуальный конфигуратор (команда **Настроить myTemplateGenerator...**):
+
 ```json
 {
   "templatesPath": "templates",
