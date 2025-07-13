@@ -268,6 +268,29 @@ const I18N_DICTIONARIES: Record<string, Record<string, string>> = {
     }
 };
 
+const SETTINGS_I18N: Record<string, Record<string, string>> = {
+    ru: {
+        title: 'Настройки myTemplateGenerator',
+        templatesPath: 'Путь к шаблонам:',
+        overwriteFiles: 'Перезаписывать существующие файлы',
+        inputMode: 'Способ ввода переменных:',
+        inputModeWebview: 'Webview (форма)',
+        inputModeInputBox: 'InputBox (по одной)',
+        language: 'Язык интерфейса:',
+        save: 'Сохранить'
+    },
+    en: {
+        title: 'myTemplateGenerator Settings',
+        templatesPath: 'Templates path:',
+        overwriteFiles: 'Overwrite existing files',
+        inputMode: 'Variable input method:',
+        inputModeWebview: 'Webview (form)',
+        inputModeInputBox: 'InputBox (one by one)',
+        language: 'Interface language:',
+        save: 'Save'
+    }
+};
+
 interface MyTemplateGeneratorConfig {
     templatesPath: string;
     overwriteFiles: boolean;
@@ -279,7 +302,7 @@ const DEFAULT_CONFIG: MyTemplateGeneratorConfig = {
     templatesPath: 'templates',
     overwriteFiles: false,
     inputMode: 'webview',
-    language: 'ru',
+    language: 'en',
 };
 
 function getConfigPath(): string | undefined {
@@ -313,175 +336,183 @@ function writeConfig(config: MyTemplateGeneratorConfig) {
 
 async function showConfigWebview(context: vscode.ExtensionContext) {
     const config = readConfig();
+    let language = config.language || 'ru';
     return new Promise<void>((resolve) => {
         const panel = vscode.window.createWebviewPanel(
             'mytemplategeneratorConfig',
-            'Настройки myTemplateGenerator',
+            SETTINGS_I18N[language]?.title || SETTINGS_I18N['ru'].title,
             vscode.ViewColumn.Active,
             { enableScripts: true }
         );
-        panel.webview.html = `
-            <!DOCTYPE html>
-            <html lang="ru">
-            <head>
-                <meta charset="UTF-8">
-                <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline' 'unsafe-eval'; style-src 'unsafe-inline';">
-                <title>Настройки myTemplateGenerator</title>
-                <style>
-                    :root {
-                      --bg: #f7f7fa;
-                      --panel-bg: #fff;
-                      --text: #222;
-                      --label: #555;
-                      --input-bg: #f0f0f3;
-                      --input-border: #d0d0d7;
-                      --input-focus: #1976d2;
-                      --button-bg: #1976d2;
-                      --button-text: #fff;
-                      --button-hover: #1565c0;
-                      --border-radius: 8px;
-                      --shadow: 0 2px 12px rgba(0,0,0,0.07);
-                    }
-                    @media (prefers-color-scheme: dark) {
-                      :root {
-                        --bg: #181a1b;
-                        --panel-bg: #23272e;
-                        --text: #f3f3f3;
-                        --label: #b0b0b0;
-                        --input-bg: #23272e;
-                        --input-border: #33363b;
-                        --input-focus: #90caf9;
-                        --button-bg: #1976d2;
-                        --button-text: #fff;
-                        --button-hover: #1565c0;
-                        --border-radius: 8px;
-                        --shadow: 0 2px 12px rgba(0,0,0,0.25);
-                      }
-                    }
-                    body {
-                      background: var(--bg);
-                      color: var(--text);
-                      font-family: 'Segoe UI', 'Roboto', Arial, sans-serif;
-                      margin: 0;
-                      min-height: 100vh;
-                    }
-                    .config-container {
-                      max-width: 420px;
-                      margin: 48px auto;
-                      background: var(--panel-bg);
-                      border-radius: var(--border-radius);
-                      box-shadow: var(--shadow);
-                      padding: 32px 36px 28px 36px;
-                      display: flex;
-                      flex-direction: column;
-                      gap: 18px;
-                    }
-                    .config-container h2 {
-                      margin: 0 0 18px 0;
-                      font-size: 1.5em;
-                      font-weight: 600;
-                      letter-spacing: 0.01em;
-                    }
-                    .form-group {
-                      display: flex;
-                      flex-direction: column;
-                      gap: 10px;
-                      margin-bottom: 10px;
-                    }
-                    label {
-                      color: var(--label);
-                      font-size: 1em;
-                      font-weight: 500;
-                      margin-bottom: 2px;
-                    }
-                    input[type="text"], select {
-                      background: var(--input-bg);
-                      color: var(--text);
-                      border: 1.5px solid var(--input-border);
-                      border-radius: var(--border-radius);
-                      padding: 8px 10px;
-                      font-size: 1em;
-                      transition: border 0.2s, box-shadow 0.2s;
-                      outline: none;
-                    }
-                    input[type="text"]:focus, select:focus {
-                      border-color: var(--input-focus);
-                      box-shadow: 0 0 0 2px var(--input-focus)33;
-                    }
-                    .checkbox-group {
-                      display: flex;
-                      align-items: center;
-                      gap: 8px;
-                      margin-bottom: 10px;
-                    }
-                    input[type="checkbox"] {
-                      accent-color: var(--input-focus);
-                      width: 18px;
-                      height: 18px;
-                    }
-                    button {
-                      margin-top: 10px;
-                      background: var(--button-bg);
-                      color: var(--button-text);
-                      border: none;
-                      border-radius: var(--border-radius);
-                      padding: 10px 0;
-                      font-size: 1.1em;
-                      font-weight: 600;
-                      cursor: pointer;
-                      transition: background 0.2s, box-shadow 0.2s;
-                      box-shadow: 0 1px 4px rgba(25, 118, 210, 0.08);
-                    }
-                    button:hover, button:focus {
-                      background: var(--button-hover);
-                    }
-                  </style>
-                <script>
-                    window.addEventListener('DOMContentLoaded', () => {
-                        const vscode = acquireVsCodeApi();
-                        document.getElementById('configForm').addEventListener('submit', (e) => {
-                            e.preventDefault();
-                            const templatesPath = document.getElementById('templatesPath').value;
-                            const overwriteFiles = document.getElementById('overwriteFiles').checked;
-                            const inputMode = document.getElementById('inputMode').value;
-                            const language = document.getElementById('language').value;
-                            vscode.postMessage({ type: 'save', data: { templatesPath, overwriteFiles, inputMode, language } });
+        function setHtml() {
+            const dict = SETTINGS_I18N[language] || SETTINGS_I18N['ru'];
+            panel.webview.html = `
+                <!DOCTYPE html>
+                <html lang="${language}">
+                <head>
+                    <meta charset="UTF-8">
+                    <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline' 'unsafe-eval'; style-src 'unsafe-inline';">
+                    <title>${dict.title}</title>
+                    <style>
+                        :root {
+                          --bg: #f7f7fa;
+                          --panel-bg: #fff;
+                          --text: #222;
+                          --label: #555;
+                          --input-bg: #f0f0f3;
+                          --input-border: #d0d0d7;
+                          --input-focus: #1976d2;
+                          --button-bg: #1976d2;
+                          --button-text: #fff;
+                          --button-hover: #1565c0;
+                          --border-radius: 8px;
+                          --shadow: 0 2px 12px rgba(0,0,0,0.07);
+                        }
+                        @media (prefers-color-scheme: dark) {
+                          :root {
+                            --bg: #181a1b;
+                            --panel-bg: #23272e;
+                            --text: #f3f3f3;
+                            --label: #b0b0b0;
+                            --input-bg: #23272e;
+                            --input-border: #33363b;
+                            --input-focus: #90caf9;
+                            --button-bg: #1976d2;
+                            --button-text: #fff;
+                            --button-hover: #1565c0;
+                            --border-radius: 8px;
+                            --shadow: 0 2px 12px rgba(0,0,0,0.25);
+                          }
+                        }
+                        body {
+                          background: var(--bg);
+                          color: var(--text);
+                          font-family: 'Segoe UI', 'Roboto', Arial, sans-serif;
+                          margin: 0;
+                          min-height: 100vh;
+                        }
+                        .config-container {
+                          max-width: 420px;
+                          margin: 48px auto;
+                          background: var(--panel-bg);
+                          border-radius: var(--border-radius);
+                          box-shadow: var(--shadow);
+                          padding: 32px 36px 28px 36px;
+                          display: flex;
+                          flex-direction: column;
+                          gap: 18px;
+                        }
+                        .config-container h2 {
+                          margin: 0 0 18px 0;
+                          font-size: 1.5em;
+                          font-weight: 600;
+                          letter-spacing: 0.01em;
+                        }
+                        .form-group {
+                          display: flex;
+                          flex-direction: column;
+                          gap: 10px;
+                          margin-bottom: 10px;
+                        }
+                        label {
+                          color: var(--label);
+                          font-size: 1em;
+                          font-weight: 500;
+                          margin-bottom: 2px;
+                        }
+                        input[type="text"], select {
+                          background: var(--input-bg);
+                          color: var(--text);
+                          border: 1.5px solid var(--input-border);
+                          border-radius: var(--border-radius);
+                          padding: 8px 10px;
+                          font-size: 1em;
+                          transition: border 0.2s, box-shadow 0.2s;
+                          outline: none;
+                        }
+                        input[type="text"]:focus, select:focus {
+                          border-color: var(--input-focus);
+                          box-shadow: 0 0 0 2px var(--input-focus)33;
+                        }
+                        .checkbox-group {
+                          display: flex;
+                          align-items: center;
+                          gap: 8px;
+                          margin-bottom: 10px;
+                        }
+                        input[type="checkbox"] {
+                          accent-color: var(--input-focus);
+                          width: 18px;
+                          height: 18px;
+                        }
+                        button {
+                          margin-top: 10px;
+                          background: var(--button-bg);
+                          color: var(--button-text);
+                          border: none;
+                          border-radius: var(--border-radius);
+                          padding: 10px 0;
+                          font-size: 1.1em;
+                          font-weight: 600;
+                          cursor: pointer;
+                          transition: background 0.2s, box-shadow 0.2s;
+                          box-shadow: 0 1px 4px rgba(25, 118, 210, 0.08);
+                        }
+                        button:hover, button:focus {
+                          background: var(--button-hover);
+                        }
+                      </style>
+                    <script>
+                        window.addEventListener('DOMContentLoaded', () => {
+                            const vscode = acquireVsCodeApi();
+                            document.getElementById('configForm').addEventListener('submit', (e) => {
+                                e.preventDefault();
+                                const templatesPath = document.getElementById('templatesPath').value;
+                                const overwriteFiles = document.getElementById('overwriteFiles').checked;
+                                const inputMode = document.getElementById('inputMode').value;
+                                const language = document.getElementById('language').value;
+                                vscode.postMessage({ type: 'save', data: { templatesPath, overwriteFiles, inputMode, language } });
+                            });
+                            document.getElementById('language').addEventListener('change', (e) => {
+                                vscode.postMessage({ type: 'changeLanguage', language: e.target.value });
+                            });
                         });
-                    });
-                </script>
-            </head>
-            <body>
-              <div class="config-container">
-                <h2>Настройки myTemplateGenerator</h2>
-                <form id="configForm">
-                  <div class="form-group">
-                    <label for="templatesPath">Путь к шаблонам:</label>
-                    <input type="text" id="templatesPath" value="${config.templatesPath}" />
+                    </script>
+                </head>
+                <body>
+                  <div class="config-container">
+                    <h2>${dict.title}</h2>
+                    <form id="configForm">
+                      <div class="form-group">
+                        <label for="templatesPath">${dict.templatesPath}</label>
+                        <input type="text" id="templatesPath" value="${config.templatesPath || ''}"/>
+                      </div>
+                      <div class="checkbox-group">
+                        <input type="checkbox" id="overwriteFiles" ${config.overwriteFiles ? 'checked' : ''}/>
+                        <label for="overwriteFiles">${dict.overwriteFiles}</label>
+                      </div>
+                      <div class="form-group">
+                        <label for="inputMode">${dict.inputMode}</label>
+                        <select id="inputMode">
+                          <option value="webview" ${config.inputMode === 'webview' ? 'selected' : ''}>${dict.inputModeWebview}</option>
+                          <option value="inputBox" ${config.inputMode === 'inputBox' ? 'selected' : ''}>${dict.inputModeInputBox}</option>
+                        </select>
+                      </div>
+                      <div class="form-group">
+                        <label for="language">${dict.language}</label>
+                        <select id="language">
+                          <option value="ru" ${language === 'ru' ? 'selected' : ''}>Русский</option>
+                          <option value="en" ${language === 'en' ? 'selected' : ''}>English</option>
+                        </select>
+                      </div>
+                      <button type="submit" style="padding: 10px 15px">${dict.save}</button>
+                    </form>
                   </div>
-                  <div class="checkbox-group">
-                    <input type="checkbox" id="overwriteFiles" ${config.overwriteFiles ? 'checked' : ''}/>
-                    <label for="overwriteFiles">Перезаписывать существующие файлы</label>
-                  </div>
-                  <div class="form-group">
-                    <label for="inputMode">Способ ввода переменных:</label>
-                    <select id="inputMode">
-                      <option value="webview" ${config.inputMode === 'webview' ? 'selected' : ''}>Webview (форма)</option>
-                      <option value="inputBox" ${config.inputMode === 'inputBox' ? 'selected' : ''}>InputBox (по одной)</option>
-                    </select>
-                  </div>
-                  <div class="form-group">
-                    <label for="language">Язык интерфейса:</label>
-                    <select id="language">
-                      <option value="ru" ${config.language === 'ru' ? 'selected' : ''}>Русский</option>
-                      <option value="en" ${config.language === 'en' ? 'selected' : ''}>English</option>
-                    </select>
-                  </div>
-                  <button type="submit">Сохранить</button>
-                </form>
-              </div>
-            </body>
-            </html>
-        `;
+                </body>
+                </html>
+            `;
+        }
+        setHtml();
         panel.webview.onDidReceiveMessage(
             message => {
                 if (message.type === 'save') {
@@ -489,6 +520,9 @@ async function showConfigWebview(context: vscode.ExtensionContext) {
                     vscode.window.showInformationMessage('Настройки myTemplateGenerator сохранены!');
                     panel.dispose();
                     resolve();
+                } else if (message.type === 'changeLanguage') {
+                    language = message.language;
+                    setHtml();
                 }
             },
             undefined,

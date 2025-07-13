@@ -3,6 +3,7 @@
   "displayName": "myTemplateGenerator",
   "description": "Generate files and folders from customizable templates with variable substitution in VSCode.",
   "version": "0.0.1",
+  "publisher": "MyTemplateGenerator",
   "author": "Sergey Gromov",
   "url": "https://github.com/gormov1122/MyTemplateGenerator",
   "engines": {
@@ -68,7 +69,7 @@
   "devDependencies": {
     "@types/mocha": "^10.0.10",
     "@types/node": "20.x",
-    "@types/vscode": "^1.102.0",
+    "@types/vscode": "^1.60.0",
     "@typescript-eslint/eslint-plugin": "^8.31.1",
     "@typescript-eslint/parser": "^8.31.1",
     "@vscode/test-cli": "^0.0.11",
