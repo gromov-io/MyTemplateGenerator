@@ -1,0 +1,85 @@
+{
+  "name": "mytemplategenerator",
+  "displayName": "myTemplateGenerator",
+  "description": "Generate files and folders from customizable templates with variable substitution in VSCode.",
+  "version": "0.0.1",
+  "author": "Sergey Gromov",
+  "url": "https://github.com/gormov1122/MyTemplateGenerator",
+  "engines": {
+    "vscode": "^1.60.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onStartupFinished",
+    "onLanguage:javascript",
+    "onLanguage:typescript",
+    "onLanguage:css",
+    "onLanguage:plaintext",
+    "onFileSystem: file"
+  ],
+  "main": "./dist/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "mytemplategenerator.createFromTemplate",
+        "title": "%mytemplategenerator.createFromTemplate.title%"
+      },
+      {
+        "command": "mytemplategenerator.configure",
+        "title": "%mytemplategenerator.configure.title%"
+      }
+    ],
+    "menus": {
+      "explorer/context": [
+        {
+          "command": "mytemplategenerator.createFromTemplate",
+          "group": "navigation@10"
+        }
+      ]
+    },
+    "semanticTokenColors": [
+      {
+        "token": "bracket",
+        "foreground": "#FFA500"
+      },
+      {
+        "token": "variable",
+        "foreground": "#4EC900"
+      },
+      {
+        "token": "modifier",
+        "foreground": "#0074D9"
+      }
+    ]
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run package",
+    "compile": "webpack",
+    "watch": "webpack --watch",
+    "package": "webpack --mode production --devtool hidden-source-map",
+    "compile-tests": "tsc -p . --outDir out",
+    "watch-tests": "tsc -p . -w --outDir out",
+    "pretest": "npm run compile-tests && npm run compile && npm run lint",
+    "lint": "eslint src",
+    "test": "vscode-test"
+  },
+  "devDependencies": {
+    "@types/mocha": "^10.0.10",
+    "@types/node": "20.x",
+    "@types/vscode": "^1.102.0",
+    "@typescript-eslint/eslint-plugin": "^8.31.1",
+    "@typescript-eslint/parser": "^8.31.1",
+    "@vscode/test-cli": "^0.0.11",
+    "@vscode/test-electron": "^2.5.2",
+    "eslint": "^9.25.1",
+    "ts-loader": "^9.5.2",
+    "typescript": "^5.8.3",
+    "webpack": "^5.99.7",
+    "webpack-cli": "^6.0.1"
+  },
+  "dependencies": {
+    "handlebars": "^4.7.8"
+  }
+}
