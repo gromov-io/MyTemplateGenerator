@@ -1,0 +1,124 @@
+:root {
+  --bg: #f7f7fa;
+  --panel-bg: #fff;
+  --text: #222;
+  --label: #555;
+  --input-bg: #f0f0f3;
+  --input-border: #d0d0d7;
+  --input-focus: #1976d2;
+  --button-bg: #1976d2;
+  --button-text: #fff;
+  --button-hover: #1565c0;
+  --border-radius: 8px;
+  --shadow: 0 2px 12px rgba(0,0,0,0.07);
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #181a1b;
+    --panel-bg: #23272e;
+    --text: #f3f3f3;
+    --label: #b0b0b0;
+    --input-bg: #23272e;
+    --input-border: #33363b;
+    --input-focus: #90caf9;
+    --button-bg: #1976d2;
+    --button-text: #fff;
+    --button-hover: #1565c0;
+    --border-radius: 8px;
+    --shadow: 0 2px 12px rgba(0,0,0,0.25);
+  }
+}
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Segoe UI', 'Roboto', Arial, sans-serif;
+  margin: 0;
+  min-height: 100vh;
+}
+.create-container, .config-container {
+  max-width: 420px;
+  margin: 48px auto;
+  background: var(--panel-bg);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow);
+  padding: 32px 36px 28px 36px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+.head-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.create-container h2, .config-container h2 {
+  margin: 0;
+  font-size: 1.5em;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+label {
+  color: var(--label);
+  font-size: 1em;
+  font-weight: 500;
+}
+input, select {
+  background: var(--input-bg);
+  color: var(--text);
+  border: 1.5px solid var(--input-border);
+  border-radius: var(--border-radius);
+  padding: 8px 10px;
+  font-size: 1em;
+  transition: border 0.2s, box-shadow 0.2s;
+  outline: none;
+}
+input:focus, select:focus {
+  border-color: var(--input-focus);
+  box-shadow: 0 0 0 2px var(--input-focus)33;
+}
+button, .btn {
+  margin-top: 10px;
+  background: var(--button-bg);
+  color: var(--button-text);
+  border: none;
+  border-radius: var(--border-radius);
+  padding: 10px 15px;
+  font-size: 1.1em;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s, box-shadow 0.2s;
+  box-shadow: 0 1px 4px rgba(25, 118, 210, 0.08);
+}
+button:hover, button:focus, .btn:hover, .btn:focus {
+  background: var(--button-hover);
+}
+.destination {
+  margin-bottom: 16px;
+  color: #888;
+  font-size: 13px;
+}
+.lang-select {
+  display: block;
+}
+.var-hint {
+  color: #888;
+  font-size: 13px;
+  margin-bottom: 10px;
+}
+
+.template-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+#configForm {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}

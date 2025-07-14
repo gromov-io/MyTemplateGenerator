@@ -2,7 +2,7 @@
   "name": "mytemplategenerator",
   "displayName": "myTemplateGenerator",
   "description": "Generate files and folders from customizable templates with variable substitution in VSCode.",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "publisher": "MyTemplateGenerator",
   "author": "Sergey Gromov",
   "icon": "logo.png",

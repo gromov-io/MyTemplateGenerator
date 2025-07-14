@@ -17,7 +17,8 @@ export async function showTemplateAndVarsWebview(
         return I18N_DICTIONARIES[language] || I18N_DICTIONARIES['ru'];
     }
     const templates = fs.readdirSync(templatesDir).filter(f => fs.statSync(path.join(templatesDir, f)).isDirectory());
-    const stylePath = vscode.Uri.joinPath(context.extensionUri, 'src', 'webview', 'styles.css');
+    // Стили теперь лежат в media/styles.css (папка для статики)
+    const stylePath = vscode.Uri.joinPath(context.extensionUri, 'media', 'styles.css');
     return new Promise((resolve) => {
         const panel = vscode.window.createWebviewPanel(
             'templateVars',

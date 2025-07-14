@@ -48,8 +48,8 @@ export async function showConfigWebview(context: vscode.ExtensionContext) {
         { enableScripts: true }
     );
     let config = readConfig();
-    // Получаем URI для стилей
-    const stylePath = vscode.Uri.joinPath(context.extensionUri, 'src', 'webview', 'styles.css');
+    // Стили теперь лежат в media/styles.css (папка для статики)
+    const stylePath = vscode.Uri.joinPath(context.extensionUri, 'media', 'styles.css');
     const styleUri = panel.webview.asWebviewUri(stylePath);
     setHtml((config.language === 'en' ? 'en' : 'ru'));
 
