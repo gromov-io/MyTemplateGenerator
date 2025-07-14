@@ -2,7 +2,7 @@
   "name": "mytemplategenerator",
   "displayName": "myTemplateGenerator",
   "description": "Generate files and folders from customizable templates with variable substitution in VSCode.",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "publisher": "MyTemplateGenerator",
   "author": "Sergey Gromov",
   "icon": "logo.png",
@@ -82,6 +82,8 @@
     "webpack-cli": "^6.0.1"
   },
   "dependencies": {
+    "change-case": "^5.4.4",
+    "change-case-all": "^2.1.0",
     "handlebars": "^4.7.8"
   }
 }
