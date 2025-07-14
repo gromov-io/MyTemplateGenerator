@@ -1,5 +1,3 @@
-# myTemplateGenerator
-
 [English](#english) | [Русский](#русский)
 
 ---
