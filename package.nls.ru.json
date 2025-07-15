@@ -1,4 +1,8 @@
 {
   "mytemplategenerator.createFromTemplate.title": "Создать из шаблона...",
-  "mytemplategenerator.configure.title": "Настроить myTemplateGenerator..."
+  "mytemplategenerator.configure.title": "Настроить myTemplateGenerator...",
+  "mytemplategenerator.config.templatesPath.description": "Путь к папке с шаблонами (относительно корня проекта)",
+  "mytemplategenerator.config.overwriteFiles.description": "Перезаписывать ли существующие файлы при генерации",
+  "mytemplategenerator.config.inputMode.description": "Режим ввода переменных: webview или inputBox",
+  "mytemplategenerator.config.language.description": "Язык интерфейса расширения"
 } 

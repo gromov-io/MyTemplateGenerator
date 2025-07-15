@@ -156,7 +156,7 @@ export async function showTemplateAndVarsWebview(
                     if (message.language) language = message.language;
                     // Сохраняем язык в конфиг
                     const oldConfig = readConfig();
-                    writeConfig({ ...oldConfig, language });
+                    await writeConfig({ ...oldConfig, language });
                     currentTemplate = message.template || templates[0] || '';
                     // Получаем переменные для выбранного шаблона
                     let baseVars: string[] = [];

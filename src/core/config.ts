@@ -10,29 +10,28 @@ export interface MyTemplateGeneratorConfig {
     language?: string;
 }
 
-export function getConfigPath(): string | undefined {
-    const folders = vscode.workspace.workspaceFolders;
-    if (!folders || folders.length === 0) return undefined;
-    return path.join(folders[0].uri.fsPath, 'mycodegenerate.json');
-}
-
 export function readConfig(): MyTemplateGeneratorConfig {
-    const configPath = getConfigPath();
-    if (configPath && fs.existsSync(configPath)) {
-        const raw = fs.readFileSync(configPath, 'utf8');
-        return JSON.parse(raw);
-    }
-    // Значения по умолчанию
+    const config = vscode.workspace.getConfiguration('myTemplateGenerator');
     return {
-        templatesPath: 'templates',
-        overwriteFiles: false,
-        inputMode: 'inputBox',
-        language: 'en',
+        templatesPath: config.get<string>('templatesPath', '.templates'),
+        overwriteFiles: config.get<boolean>('overwriteFiles', false),
+        inputMode: config.get<'webview' | 'inputBox'>('inputMode', 'webview'),
+        language: config.get<string>('language', 'en'),
     };
 }
 
-export function writeConfig(config: MyTemplateGeneratorConfig) {
-    const configPath = getConfigPath();
-    if (!configPath) return;
-    fs.writeFileSync(configPath, JSON.stringify(config, null, 2), 'utf8');
+export async function writeConfig(newConfig: Partial<MyTemplateGeneratorConfig>) {
+    const config = vscode.workspace.getConfiguration('myTemplateGenerator');
+    if (newConfig.templatesPath !== undefined) {
+        await config.update('templatesPath', newConfig.templatesPath, vscode.ConfigurationTarget.Global);
+    }
+    if (newConfig.overwriteFiles !== undefined) {
+        await config.update('overwriteFiles', newConfig.overwriteFiles, vscode.ConfigurationTarget.Global);
+    }
+    if (newConfig.inputMode !== undefined) {
+        await config.update('inputMode', newConfig.inputMode, vscode.ConfigurationTarget.Global);
+    }
+    if (newConfig.language !== undefined) {
+        await config.update('language', newConfig.language, vscode.ConfigurationTarget.Global);
+    }
 } 

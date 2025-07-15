@@ -2,7 +2,7 @@
   "name": "mytemplategenerator",
   "displayName": "myTemplateGenerator",
   "description": "Generate files and folders from customizable templates with variable substitution in VSCode.",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "publisher": "MyTemplateGenerator",
   "author": "Sergey Gromov",
   "icon": "logo.png",
@@ -40,6 +40,41 @@
           "group": "navigation@10"
         }
       ]
+    },
+    "configuration": {
+      "title": "myTemplateGenerator",
+      "properties": {
+        "myTemplateGenerator.templatesPath": {
+          "type": "string",
+          "default": ".templates",
+          "description": "%mytemplategenerator.config.templatesPath.description%",
+          "markdownDescription": "%mytemplategenerator.config.templatesPath.description%",
+          "scope": "application"
+        },
+        "myTemplateGenerator.overwriteFiles": {
+          "type": "boolean",
+          "default": false,
+          "description": "%mytemplategenerator.config.overwriteFiles.description%",
+          "markdownDescription": "%mytemplategenerator.config.overwriteFiles.description%",
+          "scope": "application"
+        },
+        "myTemplateGenerator.inputMode": {
+          "type": "string",
+          "enum": ["webview", "inputBox"],
+          "default": "webview",
+          "description": "%mytemplategenerator.config.inputMode.description%",
+          "markdownDescription": "%mytemplategenerator.config.inputMode.description%",
+          "scope": "application"
+        },
+        "myTemplateGenerator.language": {
+          "type": "string",
+          "enum": ["ru", "en"],
+          "default": "en",
+          "description": "%mytemplategenerator.config.language.description%",
+          "markdownDescription": "%mytemplategenerator.config.language.description%",
+          "scope": "application"
+        }
+      }
     },
     "semanticTokenColors": [
       {

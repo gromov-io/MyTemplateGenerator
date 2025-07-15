@@ -41,7 +41,6 @@ export function activate(context: vscode.ExtensionContext) {
 
 	// Use the console to output diagnostic information (console.log) and errors (console.error)
 	// This line of code will only be executed once when your extension is activated
-	console.log('Congratulations, your extension "mytemplategenerator" is now active!');
 
 	// The command has been defined in the package.json file
 	// Now provide the implementation of the command with registerCommand
@@ -56,25 +55,20 @@ export function activate(context: vscode.ExtensionContext) {
 		const config = readConfig();
 		const dict = I18N_DICTIONARIES[config.language || 'ru'] || I18N_DICTIONARIES['ru'];
 		const workspaceFolders = vscode.workspace.workspaceFolders;
-		console.log('[DEBUG] Запуск команды createFromTemplate');
 		if (!workspaceFolders || workspaceFolders.length === 0) {
 			vscode.window.showErrorMessage(dict.noFolders);
-			console.log('[DEBUG] Нет открытых папок рабочего пространства');
 			return;
 		}
 		const templatesDir = path.join(workspaceFolders[0].uri.fsPath, config.templatesPath);
 		if (!fs.existsSync(templatesDir) || !fs.statSync(templatesDir).isDirectory()) {
 			vscode.window.showErrorMessage(`${dict.templatesNotFound} ${templatesDir}`);
-			console.log('[DEBUG] Папка шаблонов не найдена:', templatesDir);
 			return;
 		}
 		let template: string | undefined;
 		let userVars: Record<string, string> | undefined;
 		if (config.inputMode === 'webview') {
 			vscode.window.showInformationMessage('[DEBUG] Вызов webview создания шаблона...');
-			console.log('[DEBUG] Вызов showTemplateAndVarsWebview', { templatesDir, uri: uri.fsPath, lang: config.language });
 			const result: { template: string, vars: Record<string, string> } | undefined = await showTemplateAndVarsWebview(context, templatesDir, uri.fsPath, config.language || 'ru');
-			console.log('[DEBUG] Результат showTemplateAndVarsWebview:', result);
 			if (!result) {
 				vscode.window.showInformationMessage('[DEBUG] Webview был закрыт или не вернул результат');
 				return;
@@ -104,7 +98,6 @@ export function activate(context: vscode.ExtensionContext) {
 			copyTemplateWithVars(templateDir, uri.fsPath, vars, config.overwriteFiles, dict, template);
 		} catch (e: any) {
 			vscode.window.showErrorMessage(`${dict.createError}: ${e.message}`);
-			console.log('[DEBUG] Ошибка при копировании шаблона:', e);
 		}
 	});
 
@@ -121,22 +114,7 @@ export function activate(context: vscode.ExtensionContext) {
 	clearDiagnosticsForTemplates(context); // <--- Очищаем diagnostics для шаблонов
 
 	// === Отслеживание изменений конфига ===
-	const workspaceFolders = vscode.workspace.workspaceFolders;
-	if (workspaceFolders && workspaceFolders.length > 0) {
-		const configPath = path.join(workspaceFolders[0].uri.fsPath, 'mycodegenerate.json');
-		if (fs.existsSync(configPath)) {
-			fs.watch(configPath, { persistent: false }, (eventType) => {
-				if (eventType === 'change' || eventType === 'rename') {
-					// Перерегистрируем провайдер подсветки
-					if (semanticHighlightDisposable) {
-						semanticHighlightDisposable.dispose();
-					}
-					semanticHighlightDisposable = registerTemplateSemanticHighlight(context);
-					console.log('[DEBUG] Провайдер семантической подсветки перерегистрирован после изменения конфига');
-				}
-			});
-		}
-	}
+	// (Удалено: теперь все настройки глобальные через VSCode settings)
 }
 
 // This method is called when your extension is deactivated

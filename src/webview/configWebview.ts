@@ -120,16 +120,16 @@ export async function showConfigWebview(context: vscode.ExtensionContext) {
     }
 
     panel.webview.onDidReceiveMessage(
-        msg => {
+        async msg => {
             if (msg.type === 'save') {
-                writeConfig(msg.data);
+                await writeConfig(msg.data);
                 vscode.window.showInformationMessage('Настройки сохранены!');
                 panel.dispose();
             }
             if (msg.type === 'setLanguage') {
                 // Сохраняем язык в конфиг и перерисовываем webview
                 config.language = msg.language;
-                writeConfig(config);
+                await writeConfig(config);
                 setHtml(msg.language === 'en' ? 'en' : 'ru');
             }
         },

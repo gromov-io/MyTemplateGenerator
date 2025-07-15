@@ -1,4 +1,8 @@
 {
   "mytemplategenerator.createFromTemplate.title": "Create from template...",
-  "mytemplategenerator.configure.title": "Configure myTemplateGenerator..."
+  "mytemplategenerator.configure.title": "Configure myTemplateGenerator...",
+  "mytemplategenerator.config.templatesPath.description": "Path to the templates folder (relative to the project root)",
+  "mytemplategenerator.config.overwriteFiles.description": "Overwrite existing files when generating from template",
+  "mytemplategenerator.config.inputMode.description": "Variable input mode: webview or inputBox",
+  "mytemplategenerator.config.language.description": "Extension interface language"
 } 

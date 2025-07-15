@@ -20,8 +20,6 @@ export function registerTemplateSemanticHighlight(context: vscode.ExtensionConte
                 const workspaceFolders = vscode.workspace.workspaceFolders;
                 if (!workspaceFolders || workspaceFolders.length === 0) return;
                 const templatesDir = path.join(workspaceFolders[0].uri.fsPath, templatesPath);
-                console.log('[DEBUG] semantic tokens called for', document.uri.fsPath);
-                console.log('[DEBUG] Проверка шаблонной папки:', document.uri.fsPath, templatesDir, isInTemplatesDir(document.uri.fsPath, templatesDir));
                 // Проверяем, что файл в папке шаблонов
                 if (!isInTemplatesDir(document.uri.fsPath, templatesDir)) {
                     return;
