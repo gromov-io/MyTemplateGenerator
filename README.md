@@ -1,12 +1,16 @@
-[🇬🇧 English](#mytemplategenerator) | [🇷🇺 Русский](#mytemplategenerator-русский)
+[🇬🇧 English](#english) | [🇷🇺 Русский](#russian)
 
-# MyTemplateGenerator
+<div id="english">🇬🇧 English</div> 
 
-**Generate files and folders from templates with variable substitution right from the VS Code context menu.**
+# MyTemplateGenerator — template and component generator for React, Vue, Next.js, Angular, and more
 
+myTemplateGenerator is a powerful VSCode extension for generating templates, components, and project structures for all popular frameworks: React, Vue, Next.js, Angular, Svelte, Nuxt, NestJS, Express, Gatsby, Remix, SolidJS, Preact. Instantly scaffold files, folders, and boilerplate code for any modern JavaScript or TypeScript project.
+
+## Features
 - Syntax highlighting and autocomplete for template variables in template files (`{{name}}`, `{{name.camelCase}}`, etc.)
-- Instantly create project structure from templates with variables in file/folder names and content
-- Visual configurator and full localization (English/Russian)
+- Generate project structure, files, and folders for popular frameworks: **React**, **Vue**, **Next.js**, **Angular**, **Svelte**, **Nuxt**, **NestJS**, **Express**, **Gatsby**, **Remix**, **SolidJS**, **Preact**
+- Quickly create components: create React components, Vue components, Next.js components, Angular components, and more
+- Visual configurator and localization support (Russian/English)
 - Flexible settings: templates folder path, variable input mode, overwrite protection
 
 ![Logo](https://raw.githubusercontent.com/gormov1122/MyTemplateGenerator/main/src/images/1.png)
@@ -68,13 +72,19 @@ To open the settings menu, press <kbd>Ctrl</kbd>+<kbd>P</kbd>, type `Configure m
 
 You can also find all options in VSCode settings under `myTemplateGenerator`.
 
+**Keywords / Ключевые слова:**  
+template, templates, template generator, component generator, scaffold, scaffolding, boilerplate, starter template, project structure, file generator, folder generator, structure generator, react component generator, vue component generator, nextjs component generator, angular component generator, svelte component generator, nuxt component generator, nestjs generator, express generator, gatsby generator, remix generator, solidjs generator, preact generator, react templates, vue templates, nextjs templates, angular templates, svelte templates, nuxt templates, nestjs templates, express templates, gatsby templates, remix templates, solidjs templates, preact templates, project templates, framework templates, file templates, folder templates, create react component, create vue component, create nextjs component, create angular component, create svelte component, create nuxt component, create nestjs module, create express route, create gatsby page, create remix route, create solidjs component, create preact component, generate files, generate folders, generate structure
 
-# MyTemplateGenerator (русский)
+<div id="russian">🇷🇺 Русский</div> 
 
-**Генерация файлов и папок по шаблонам с автозаменой переменных прямо из контекстного меню VS Code.**
+# MyTemplateGenerator — генерация шаблонов и компонентов для React, Vue, Next.js, Angular и других
 
+myTemplateGenerator — это расширение для VSCode, предназначенное для генерации шаблонов, компонентов и структуры проектов для всех популярных фреймворков: React, Vue, Next.js, Angular, Svelte, Nuxt, NestJS, Express, Gatsby, Remix, SolidJS, Preact. Мгновенно создавайте файлы, папки и boilerplate-код для любых современных проектов на JavaScript и TypeScript.
+
+## Возможности
 - Подсветка и автокомплит переменных в шаблонных файлах (`{{name}}`, `{{name.camelCase}}` и др.)
-- Быстрое создание структуры проекта по шаблонам с подстановкой переменных в имена файлов, папок и содержимое
+- Генерация структуры проекта, файлов и папок для популярных фреймворков: **React**, **Vue**, **Next.js**, **Angular**, **Svelte**, **Nuxt**, **NestJS**, **Express**, **Gatsby**, **Remix**, **SolidJS**, **Preact**
+- Быстрое создание компонентов: создание React компонентов, Vue компонентов, Next.js компонентов, Angular компонентов и других
 - Визуальный конфигуратор и поддержка локализации (русский/английский)
 - Гибкая настройка: путь к шаблонам, режим ввода переменных, запрет/разрешение перезаписи файлов
 
@@ -136,3 +146,6 @@ You can also find all options in VSCode settings under `myTemplateGenerator`.
 Чтобы открыть меню настроек, нажмите <kbd>Ctrl</kbd>+<kbd>P</kbd>, введите `Настроить myTemplateGenerator...` (или `Configure myTemplateGenerator...` для английского интерфейса) и выберите соответствующий пункт.
 
 Также вы можете найти все параметры в настройках VSCode по ключу `myTemplateGenerator`.
+
+**Ключевые слова:**  
+создание шаблонов, генерация шаблонов, шаблоны компонентов, создание react компонентов, создание vue компонентов, создание nextjs компонентов, создание angular компонентов, создание svelte компонентов, создание nuxt компонентов, создание nestjs модулей, создание express роутов, создание gatsby страниц, создание remix роутов, создание solidjs компонентов, создание preact компонентов, генератор компонентов, генератор react компонентов, генератор vue компонентов, генератор nextjs компонентов, генератор angular компонентов, генератор svelte компонентов, генератор nuxt компонентов, генератор nestjs модулей, генератор express роутов, генератор gatsby страниц, генератор remix роутов, генератор solidjs компонентов, генератор preact компонентов, react шаблоны, vue шаблоны, nextjs шаблоны, angular шаблоны, svelte шаблоны, nuxt шаблоны, nestjs шаблоны, express шаблоны, gatsby шаблоны, remix шаблоны, solidjs шаблоны, preact шаблоны, шаблоны для проектов, шаблоны для фреймворков, структура проекта, структура папок, генерация файлов, генерация папок, файловый генератор, генератор папок, стартер шаблон
