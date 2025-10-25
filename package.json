@@ -2,9 +2,21 @@
   "name": "mytemplategenerator",
   "displayName": "Template & Component Generator: React, Vue, Next.js, Angular",
   "description": "Powerful VSCode extension for generating templates, components, and project structures for React, Vue, Next.js, Angular, Svelte, Nuxt, NestJS, Express, Gatsby, Remix, SolidJS, Preact, and more. Instantly scaffold files, folders, and boilerplate code with variable substitution.",
-  "version": "0.0.10",
+  "version": "0.0.11",
   "publisher": "MyTemplateGenerator",
   "author": "Sergey Gromov",
+  "scripts": {
+    "build-app": "npm run build && npm run package-vsce",
+    "compile": "webpack",
+    "watch": "webpack --watch",
+    "build": "webpack --mode production --devtool hidden-source-map",
+    "package-vsce": "vsce package",
+    "compile-tests": "tsc -p . --outDir out",
+    "watch-tests": "tsc -p . -w --outDir out",
+    "pretest": "npm run compile-tests && npm run compile && npm run lint",
+    "lint": "eslint src",
+    "test": "vscode-test"
+  },
   "categories": [
     "Snippets",
     "Programming Languages",
@@ -176,7 +188,10 @@
         },
         "myTemplateGenerator.inputMode": {
           "type": "string",
-          "enum": ["webview", "inputBox"],
+          "enum": [
+            "webview",
+            "inputBox"
+          ],
           "default": "webview",
           "description": "%mytemplategenerator.config.inputMode.description%",
           "markdownDescription": "%mytemplategenerator.config.inputMode.description%",
@@ -184,7 +199,10 @@
         },
         "myTemplateGenerator.language": {
           "type": "string",
-          "enum": ["ru", "en"],
+          "enum": [
+            "ru",
+            "en"
+          ],
           "default": "en",
           "description": "%mytemplategenerator.config.language.description%",
           "markdownDescription": "%mytemplategenerator.config.language.description%",
@@ -207,17 +225,6 @@
       }
     ]
   },
-  "scripts": {
-    "vscode:prepublish": "npm run package",
-    "compile": "webpack",
-    "watch": "webpack --watch",
-    "package": "webpack --mode production --devtool hidden-source-map",
-    "compile-tests": "tsc -p . --outDir out",
-    "watch-tests": "tsc -p . -w --outDir out",
-    "pretest": "npm run compile-tests && npm run compile && npm run lint",
-    "lint": "eslint src",
-    "test": "vscode-test"
-  },
   "devDependencies": {
     "@types/mocha": "^10.0.10",
     "@types/node": "20.x",
@@ -226,6 +233,7 @@
     "@typescript-eslint/parser": "^8.31.1",
     "@vscode/test-cli": "^0.0.11",
     "@vscode/test-electron": "^2.5.2",
+    "@vscode/vsce": "^3.6.2",
     "eslint": "^9.25.1",
     "ts-loader": "^9.5.2",
     "typescript": "^5.8.3",
