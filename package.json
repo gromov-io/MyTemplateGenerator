@@ -2,7 +2,7 @@
   "name": "mytemplategenerator",
   "displayName": "Template & Component Generator: React, Vue, Next.js, Angular",
   "description": "Powerful VSCode extension for generating templates, components, and project structures for React, Vue, Next.js, Angular, Svelte, Nuxt, NestJS, Express, Gatsby, Remix, SolidJS, Preact, and more. Instantly scaffold files, folders, and boilerplate code with variable substitution.",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "publisher": "MyTemplateGenerator",
   "author": "Sergey Gromov",
   "categories": [
@@ -117,14 +117,14 @@
     "стартер шаблон"
   ],
   "icon": "logo.png",
-  "url": "https://github.com/gormov1122/MyTemplateGenerator",
-  "homepage": "https://github.com/gormov1122/MyTemplateGenerator",
+  "url": "https://github.com/gromov-io/MyTemplateGenerator",
+  "homepage": "https://github.com/gromov-io/MyTemplateGenerator",
   "repository": {
     "type": "git",
-    "url": "https://github.com/gormov1122/MyTemplateGenerator"
+    "url": "https://github.com/gromov-io/MyTemplateGenerator"
   },
   "bugs": {
-    "url": "https://github.com/gormov1122/MyTemplateGenerator/issues"
+    "url": "https://github.com/gromov-io/MyTemplateGenerator/issues"
   },
   "engines": {
     "vscode": "^1.60.0"
